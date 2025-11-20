@@ -1,0 +1,104 @@
+/* GLOBAL  */
+
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #dcd7d1;
+}
+
+/* HEADER  */
+
+#site-header {
+    background: #dcd7d1;
+    padding: 20px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding-left: 22%;
+    box-sizing: border-box;
+}
+
+/* LAYOUT: SIDEBAR + MAIN  */
+
+.layout {
+    display: flex;
+}
+
+/* Left column (sidebar container) */
+#nav-placeholder {
+    flex: 0 0 22%;
+    background-color: #dcd7d1;
+}
+
+/* Right column (main content box) */
+.wrapper {
+    flex: 1;
+    padding: 40px;
+    border: 2px solid #000;
+    background: #dcd7d1;
+    margin: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-right: 30px;
+}
+
+/* SIDEBAR  */
+
+.sidebar {
+    padding: 20px;
+}
+
+/* remove bullets & left indent */
+.sidebar ul {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+}
+
+/* Shared box style for headings + game links */
+.box {
+    border: 2px solid black;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    background: #f2f2f2;
+}
+
+/* Nav headings (Home, Games, Pydy Tuesday) */
+.sidebar .nav-title {
+    font-size: 1.3em;
+    margin: 10px 0;
+}
+
+/* Make heading links look like headings */
+.sidebar .nav-title a,
+.sidebar .nav-title a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+/* All links in sidebar */
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    white-space: nowrap;  /* keeps “Guessing Game” on one line */
+    color: black;
+}
+
+/* Hover for all links */
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Game list indentation under "Games" heading */
+.game-list {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* Extra hover effect just for game boxes */
+.game-link:hover {
+    background: #e6e6e6;
+}

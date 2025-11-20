@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Header above the wrapper -->
+    <header id="site-header">
+        Number Guessing Game
+    </header>
+
+    <div class="layout">
+        <!-- Left column: sidebar/nav -->
+        <div id="nav-placeholder">
+            {% include 'nav.html' %}
+        </div>
+
+        <!-- Right column: main content -->
+        <main class="wrapper">
+            <h2>Guess a number between 1 and 100</h2>
+
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+
+            {% if not game_over %}
+                <form method="post">
+                    <label for="guess">Your guess:</label>
+                    <input type="number" name="guess" id="guess" min="1" max="100" required>
+                    <button type="submit">Submit</button>
+                </form>
+                <p>Attempt {{ attempts }} of {{ max_attempts }}</p>
+            {% else %}
+                <form method="post">
+                    <button type="submit" name="play_again" value="yes">Play again</button>
+                </form>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
