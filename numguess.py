@@ -18,8 +18,8 @@ def reset_game():
 # run the function when the page is loaded
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # First visit: create a game
-    if request.method == "GET":
+    # Ensure a game exists for any first-time request (GET, HEAD, POST)
+    if "target" not in session:
         reset_game()
 
     message = ""
@@ -42,7 +42,6 @@ def index():
             except ValueError:
                 message = "❌ Invalid input. Please enter a number."
             else:
-                # Only process a guess if the game is not already over
                 if attempts < MAX_ATTEMPTS:
                     attempts += 1
                     session["attempts"] = attempts
@@ -51,16 +50,17 @@ def index():
                         message = f"Yay! You guessed correctly in {attempts} attempts! 🎉"
                         game_over = True
                     elif attempts >= MAX_ATTEMPTS:
-                        # This was the last allowed attempt and still wrong
                         message = f"Sorry! You ran out of attempts. The number was {target}. 😵"
                         game_over = True
                     elif guess < target:
                         message = "Your number is too low. 👎"
-                    else:  # guess > target
+                    else:
                         message = "Your number is too high. 👎"
                 else:
-                    # Safety: already out of attempts but somehow got another POST
-                    message = f"Game over! The number was {target}. Click 'Play again' to start a new game."
+                    message = (
+                        f"Game over! The number was {target}. "
+                        "Click 'Play again' to start a new game."
+                    )
                     game_over = True
 
     return render_template(
@@ -72,4 +72,5 @@ def index():
     )
 
 if __name__ == "__main__":
+
     app.run(debug=True)
